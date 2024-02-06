@@ -1,0 +1,30 @@
+table {
+    border: thick solid rgb(48, 141, 199);
+    width: 100%;
+    background-color: #D6FFF6;
+}
+th, td {
+    border: medium solid rgb(48, 141, 199);
+    padding: 5px;
+}
+
+#outerTable {
+    display: flex;
+    justify-content: space-around; 
+    align-items: start; 
+    margin: auto;
+}
+body{
+    background-color: #2374AB; 
+};
+
+#outerTable td {
+    vertical-align: top;
+    background-color: rgb(48, 141, 199);
+}
+h1{
+    color: rgb(50, 87, 199);
+}
+.white{
+    color: rgb(50, 87, 199);
+}
