@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project 3</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body onload="initialize()">
+    <h1>Dice Game</h1>
+    <form id="inputform">
+        <div class = "white">How many dice would you like to roll?</div>
+        <label>
+            <div class = "white"><input type = "radio" name = "numberRolled" value = "1" checked> 1</div>
+        </label>
+        <label>
+            <div class = "white"><input type = "radio" name = "numberRolled" value = "2"> 2</div>
+        </label>
+        <label>
+            <div class = "white"><input type = "radio" name = "numberRolled" value = "3"> 3</div>
+        </label>
+        <div class ="white">Times Dice Rolled: <input type="text" id="timesRolled" value="1"/></div>
+    </form>
+    <div></div>
+    <button id="rollButton">Roll Dice</button>
+    <table id="outerTable">
+        <tr>
+            <td>
+                <table id="dicetable"></table>
+            </td>
+            <td>
+                <table id="statstable"></table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
