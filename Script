@@ -1,0 +1,85 @@
+function initialize() {
+
+    diceTable = document.getElementById("dicetable");
+    statsTable = document.getElementById("statstable");
+
+    document.getElementById('rollButton').addEventListener('click', rollDice);
+}
+
+
+   
+    for (let i = 0; i < numRolls; i++) {
+        let rollTotal = 0; 
+        let rollCounts = new Array(7).fill(0);
+        for (let j = 0; j < numDice; j++) {
+            let roll = Math.floor(Math.random() * 6) + 1; 
+            rollTotal += roll; 
+            rollCounts[roll]++; 
+        }
+        frequency[rollTotal]++; 
+        if (frequency[rollTotal] > modeCount) { 
+            modeCount = frequency[rollTotal];
+            modeValue = rollTotal;
+        }
+        totalSum += rollTotal; 
+
+        
+        for (let k = 1; k <= 6; k++) {
+            if (rollCounts[k] === 2) doubles++;
+            if (rollCounts[k] === 3) triples++;
+        }
+    }
+
+    
+    diceTable.innerHTML = '<tr><th>Result</th><th>Frequency</th></tr>';
+    statsTable.innerHTML = '<tr><th>Statistic</th><th>Value</th></tr>';
+
+  
+    for (let i = numDice; i < frequency.length; i++) {
+        let row = diceTable.insertRow();
+        row.innerHTML = `<td> ${i} </td><td> ${frequency[i]} </td>`;
+    }
+
+    function rollDice() {
+   
+        let numDice = parseInt(document.querySelector('input[name="numberRolled"]:checked').value);
+      
+        let numRolls = parseInt(document.getElementById("timesRolled").value);
+    
+      
+        diceTable.innerHTML = '';
+        statsTable.innerHTML = '';
+    
+        let frequency = new Array(numDice * 6 + 1).fill(0);
+        let totalSum = 0; 
+        let modeValue = null; 
+        let modeCount = 0; 
+        let doubles = 0; 
+        let triples = 0;
+    let mean = (totalSum / numRolls).toFixed(2);
+
+    
+    let median = null;
+    let cumulative = 0;
+    let midpoint = Math.floor(numRolls / 2);
+  
+    
+    statsTable.insertRow().innerHTML = `<td>Mean</td><td> ${mean} </td>`;
+    statsTable.insertRow().innerHTML = `<td>Median</td><td> ${median} </td>`;
+    statsTable.insertRow().innerHTML = `<td>Mode</td><td> ${modeValue} </td>`;
+
+    for (let i = numDice; i < frequency.length; i++) {
+        cumulative += frequency[i];
+        if (cumulative >= midpoint) {
+            median = i;
+            break;
+        }
+    }
+    
+    if (numDice > 1) {
+        statsTable.insertRow().innerHTML = `<td>Doubles</td><td> ${doubles} </td>`;
+    }
+    if (numDice === 3) {
+        statsTable.insertRow().innerHTML = `<td>Triples</td><td> ${triples} </td>`;
+    }
+}
